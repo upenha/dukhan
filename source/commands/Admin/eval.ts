@@ -23,37 +23,16 @@ export class UserCommand extends Command {
     )
 	}
 	public async chatInputRun(interaction: Command.ChatInputInteraction) {
-		const value = interaction.options.getString('code');
-    console.log(value)
-		const { result, success, time } = await this.eval(interaction, value!)
-    console.log(result)
-    const embed = new Embed(interaction.user);
-
-		embed.addFields(
-			{
-				name: 'Entrada',
-				value: `\`\`\`ts\n${value}\`\`\``,
-				inline: false,
-			},
-			{
-				name: 'Saida',
-				value: `\`\`\`json\n${result}\`\`\``,
-				inline: false,
-			},
-			{
-				name: 'Tempo (em milisegundos)',
-				value: `\`\`\`${time}ms\`\`\``,
-				inline: false,
-			}
-		);
-
-		return interaction.reply({ content: interaction.user.toString(), embeds: [embed], ephemeral: true });
+		const value = interaction.options.getString('code')!;
+		const { result, success, time } = await this.eval(interaction, value)
+		return interaction.reply({ content: interaction.user.toString() + `\`\`\`${result}\`\`\``, ephemeral: true });
 	}
 
   public async eval(
 		message: Command.ChatInputInteraction,
 		code: string
 	) {
+    console.log(code)
 		let time = Date.now();
 		let success = true;
 		let result;
