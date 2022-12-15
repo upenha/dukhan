@@ -24,9 +24,11 @@ export class UserCommand extends Command {
 	}
 	public async chatInputRun(interaction: Command.ChatInputInteraction) {
 		const value = interaction.options.getString('code');
+    console.log(value)
 		const { result, success, time } = await this.eval(interaction, value!)
     console.log(result)
     const embed = new Embed(interaction.user);
+
 		embed.addFields(
 			{
 				name: 'Entrada',
@@ -45,7 +47,7 @@ export class UserCommand extends Command {
 			}
 		);
 
-		interaction.reply({ content: interaction.user.toString(), embeds: [embed], ephemeral: true });
+		return interaction.reply({ content: interaction.user.toString(), embeds: [embed], ephemeral: true });
 	}
 
   public async eval(
