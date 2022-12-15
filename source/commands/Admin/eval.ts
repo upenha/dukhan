@@ -5,6 +5,7 @@ import { getEmoji } from '../../utils/getEmoji';
 
 @ApplyOptions<Command.Options>({
 	description: 'Eval!',
+  preconditions: ['TeamOnly'],
 })
 
 export class UserCommand extends Command {
