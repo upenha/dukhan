@@ -3,6 +3,7 @@ import { cyan } from 'colorette'
 
 export class UserListener extends Listener {
   async run() {
+		await this.container.client.application?.fetch();
 		console.info(cyan('[BOT]     '), 'online!')
     this.container.client.user?.setPresence({
       activities: [
