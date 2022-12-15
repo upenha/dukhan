@@ -25,7 +25,7 @@ export class UserCommand extends Command {
 	public async chatInputRun(interaction: Command.ChatInputInteraction) {
 		const value = interaction.options.getString('code');
 		const { result, success, time } = await this.eval(interaction, value!)
-
+    console.log(result)
     const embed = new Embed(interaction.user);
 		embed.addFields(
 			{
