@@ -10,6 +10,7 @@
     "dev:start": "tsnd --respawn --quiet --transpile-only source/index.ts -r dotenv/config"
   },
   "dependencies": {
+    "@discordjs/rest": "^1.4.0",
     "@prisma/client": "^4.7.1",
     "@sapphire/decorators": "^5.0.0",
     "@sapphire/framework": "^3.1.4",

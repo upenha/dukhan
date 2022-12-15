@@ -23,16 +23,15 @@ export class UserCommand extends Command {
     )
 	}
 	public async chatInputRun(interaction: Command.ChatInputInteraction) {
+		await interaction.deferReply({ ephemeral: true })
 		const value = interaction.options.getString('code')!;
-		const { result, success, time } = await this.eval(interaction, value)
-		return interaction.reply({ content: interaction.user.toString() + `\`\`\`${result}\`\`\``, ephemeral: true });
+		const { result } = await this.eval(interaction, value)
+		interaction.editReply({ content: `${interaction.user.toString()} \`\`\`${result}\`\`\`` });
 	}
-
-  public async eval(
+	public async eval(
 		message: Command.ChatInputInteraction,
-		code: string
+		code: string,
 	) {
-    console.log(code)
 		let time = Date.now();
 		let success = true;
 		let result;
